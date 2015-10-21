@@ -30,10 +30,10 @@ RSpec.describe Uncomtrade::Query do
   end
 
   it 'update method should update the right values' do
-     query = Uncomtrade::Query.new
-     query.update(max: 100, ps: '2012')
-     expect(query.options[:max]).to eq(100)
-     expect(query.options[:ps]).to eq('2012')
+    query = Uncomtrade::Query.new
+    query.update(max: 100, ps: '2012')
+    expect(query.options[:max]).to eq(100)
+    expect(query.options[:ps]).to eq('2012')
   end
 
   it 'update method should not reset options' do
