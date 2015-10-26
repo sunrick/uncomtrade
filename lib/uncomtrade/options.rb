@@ -2,8 +2,6 @@ module Uncomtrade
 
   class Options
 
-    attr_reader :options
-
     def initialize(options={})
       set_options(options)
     end
@@ -26,7 +24,13 @@ module Uncomtrade
       set_options
     end
 
+    def list_options
+      options
+    end
+
     private
+
+    attr_reader :options
 
     def set_options(options={})
       options[:max] ||= 500
