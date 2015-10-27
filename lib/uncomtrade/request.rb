@@ -8,7 +8,8 @@ module Uncomtrade
     end
 
     def get_data
-      query.get_data(options.list_options)
+      http_response = query.get_data(options.list_options)
+      Response.new(http_response)
     end
 
     def reset
