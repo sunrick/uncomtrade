@@ -27,8 +27,4 @@ module Uncomtrade
 
   end
 
-  a = Request.new
-  b = a.get_data
-  binding.pry
-
 end
