@@ -1,3 +1,6 @@
+require 'pry'
+require_relative 'helpers/iterator'
+
 module Uncomtrade
 
   class Response
@@ -9,21 +12,23 @@ module Uncomtrade
     def result
       response
     end
-    
+
     def dataset
       response["dataset"]
     end
 
-    def iterate(array=[])
-      unless array.empty?
-
-      end
+    def cherry_pick(selectors)
+      iterator = Helpers::Iterator.new(dataset)
+      iterator.cherry_pick(selectors)
     end
 
-    private
 
     attr_reader :response
 
   end
+
+  a = Request.new
+  b = a.get_data
+  binding.pry
 
 end
