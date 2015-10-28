@@ -17,7 +17,7 @@ module Uncomtrade
       response["dataset"]
     end
 
-    def cherry_pick(selectors)
+    def cherry_pick(*selectors)
       iterator = Helpers::Iterator.new(dataset)
       iterator.cherry_pick(selectors)
     end
