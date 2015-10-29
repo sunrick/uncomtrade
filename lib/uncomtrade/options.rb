@@ -2,22 +2,16 @@ module Uncomtrade
 
   class Options
 
-    def initialize(options={})
-      set_options(options)
+    attr_reader :options
+
+    def initialize(opts={})
+      set_options(opts)
     end
 
-    def update(options={})
-      self.options[:max] = options[:max] if options[:max]
-      self.options[:fmt] = options[:fmt] if options[:fmt]
-      self.options[:r] = options[:r] if options[:r]
-      self.options[:freq] = options[:freq] if options[:freq]
-      self.options[:ps] = options[:ps] if options[:ps]
-      self.options[:px] = options[:px] if options[:px]
-      self.options[:p] = options[:p] if options[:p]
-      self.options[:rg] = options[:rg] if options[:rg]
-      self.options[:cc] = options[:cc] if options[:cc]
-      self.options[:type] = options[:type] if options[:type]
-      self.options
+    def update(opts={})
+      opts.each do |key, value|
+        self.options[key] = value
+      end
     end
 
     def reset
@@ -29,8 +23,6 @@ module Uncomtrade
     end
 
     private
-
-    attr_reader :options
 
     def set_options(options={})
       options[:max] ||= 500
