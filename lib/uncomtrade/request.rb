@@ -17,7 +17,7 @@ module Uncomtrade
     end
 
     def update(opts={})
-      options.update(options)
+      options.update(opts)
     end
 
     def list_options
