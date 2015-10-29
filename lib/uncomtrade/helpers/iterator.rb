@@ -8,6 +8,7 @@ module Uncomtrade
       end
 
       def cherry_pick(selectors)
+        selectors = syms_to_strings(selectors)
         array.map do |data|
           hash = create_hash(data, selectors)
         end
@@ -16,6 +17,12 @@ module Uncomtrade
       private
 
       attr_reader :array
+
+      def syms_to_strings(selectors)
+        selectors.map do |selector|
+          selector.to_s
+        end
+      end
 
       def create_hash(data, selectors)
         selectors.inject({}) do |memo, selector|
