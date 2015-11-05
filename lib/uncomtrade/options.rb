@@ -1,3 +1,5 @@
+require_relative 'helpers/country'
+
 module Uncomtrade
 
   class Options
@@ -27,15 +29,19 @@ module Uncomtrade
     def set_options(options={})
       options[:max] ||= 500
       options[:fmt] ||= 'json'
-      options[:r] ||= 'all'
+      options[:r] = options[:r].nil? ? 'all': iso_code(options[:r])
       options[:freq] ||= 'A'
       options[:ps] ||= 'now'
       options[:px] ||= 'HS'
-      options[:p] ||= 0
+      options[:p] = options[:p].nil? ? 0 : iso_code(options[:p])
       options[:rg] ||= 'all'
       options[:cc] ||= 'TOTAL'
       options[:type] ||= 'C'
       @options = options
+    end
+
+    def iso_code(country)
+      Helpers::Country.iso_code(country)
     end
 
   end

@@ -1,4 +1,5 @@
 require 'httparty'
+require 'countries'
 
 require "uncomtrade/version"
 require "uncomtrade/query"

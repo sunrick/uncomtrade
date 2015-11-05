@@ -24,8 +24,8 @@ RSpec.describe Uncomtrade::Options do
   end
 
   it 'options should initialize correctly' do
-    options = Uncomtrade::Options.new(p: 22)
-    @options[:p] = 22
+    options = Uncomtrade::Options.new(p: 528)
+    @options[:p] = 528
     expect(options.list_options).to eq(@options)
   end
 
