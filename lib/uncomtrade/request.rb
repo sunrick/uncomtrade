@@ -20,7 +20,7 @@ module Uncomtrade
       options.update(opts)
     end
 
-    def list_options
+    def params
       options.list_options
     end
 
