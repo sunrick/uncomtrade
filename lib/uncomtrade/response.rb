@@ -21,7 +21,8 @@ module Uncomtrade
       iterator.cherry_pick(selectors)
     end
 
-
+    private
+    
     attr_reader :response
 
   end
