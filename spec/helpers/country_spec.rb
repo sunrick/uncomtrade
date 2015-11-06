@@ -28,7 +28,7 @@ RSpec.describe Uncomtrade::Helpers::Country do
   end
 
   it 'should raise an error if provided bad string' do
-    expect { raise country_helper.iso_code("una") }.to raise_error(RuntimeError, "Could not find specified country. una")
+    expect { country_helper.iso_code("una") }.to raise_error(Uncomtrade::CountryError)
   end
 
 
