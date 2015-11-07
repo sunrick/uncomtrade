@@ -22,7 +22,20 @@ Or install it yourself as:
 
     $ gem install uncomtrade
 
-## Usage
+## Basic Usage
+
+```ruby
+  request = Uncomtrade::Request.new(max: 2)
+  response = request.get_data
+
+  response.dataset
+  #=> [{"pfCode"=>"H4","yr"=>2014, ...}, ... ]
+
+  response.cherry_pick(:period, "TradeValue")
+  #=> [{"period"=>2014, "TradeValue"=>5229972238}, ...]
+```
+
+## Detailed Usage
 
 ### Request object
 
@@ -33,16 +46,8 @@ In order to make a request to the API you'll need to create a request object. Fo
 ```ruby
   request = Uncomtrade::Request.new
   request.params
-  # => {:max=>500,
-        :fmt=>"json",
-        :r=>"all",
-        :freq=>"A",
-        :ps=>"now",
-        :px=>"HS",
-        :p=>0,
-        :rg=>"all",
-        :cc=>"TOTAL",
-        :type=>"C"}
+  #=>  {:max=>500, :fmt=>"json", :r=>"all", :freq=>"A", :ps=>"now",
+  #     :px=>"HS", :p=>0, :rg=>"all", :cc=>"TOTAL", :type=>"C"}
 ```
 
 When you create a request object you can specify what parameters you want to set values for, ones that are not set will retain their default value.
@@ -50,16 +55,9 @@ When you create a request object you can specify what parameters you want to set
 ```ruby
   request = Uncomtrade::Request.new(max: 200, freq: "M", p: "nl" )
   request.params
-  # => {:max=>200,
-        :freq=>"M",
-        :fmt=>"json",
-        :r=>"all",
-        :ps=>"now",
-        :px=>"HS",
-        :p=>258, # see country finder helper
-        :rg=>"all",
-        :cc=>"TOTAL",
-        :type=>"C"}
+  #=> {:max=>200, :freq=>"M", :fmt=>"json", :r=>"all", :ps=>"now",
+  #    :px=>"HS", :p=>258, # see country finder helper
+  #    :rg=>"all", :cc=>"TOTAL", :type=>"C"}
 ```
 
 #### Updating and resetting the request object
