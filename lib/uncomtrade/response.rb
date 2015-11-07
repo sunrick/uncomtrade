@@ -6,6 +6,7 @@ module Uncomtrade
 
     def initialize(response)
       @response = JSON.parse(response.body)
+      @iterator = Helpers::Iterator.new(dataset)
     end
 
     def result
@@ -17,13 +18,16 @@ module Uncomtrade
     end
 
     def cherry_pick(*selectors)
-      iterator = Helpers::Iterator.new(dataset)
       iterator.cherry_pick(selectors)
     end
 
+    def to_csv(csv_path, *selectors)
+      iterator.to_csv(csv, selectors)
+    end
+
     private
-    
-    attr_reader :response
+
+    attr_reader :response, :iterator
 
   end
 
