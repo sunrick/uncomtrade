@@ -73,7 +73,7 @@ You can update a single parameter or multiple parameters after you've created th
 
 #### Country finder helper
 
-The [UN Comtrade API][comtrade] uses ISO numbers for identifying countries/regions. This gem uses the [countries gem][countries] to help you use two/three letter country codes, as well as country names to find the number for you. For a list of available countries/regions check the [UN Comtrade API][comtrade]docs. You can also just use the ISO code.
+The [UN Comtrade API][comtrade] uses ISO numbers for identifying countries/regions. This gem uses the [countries gem][countries] to help you use two/three letter country codes, as well as country names to find the number for you. For a list of available countries/regions check the [UN Comtrade API][comtrade] docs. You can also just use the ISO number.
 
 ```ruby
   # Netherlands

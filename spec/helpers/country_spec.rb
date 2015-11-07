@@ -7,12 +7,10 @@ RSpec.describe Uncomtrade::Helpers::Country do
 
   it 'iso_code should return 0 if given 0' do
     expect(country_helper.iso_code(0)).to eq(0)
-    expect(country_helper.iso_code("0")).to eq(0)
   end
 
   it 'iso_code should return 528 if given 528' do
     expect(country_helper.iso_code(528)).to eq(netherlands)
-    expect(country_helper.iso_code("528")).to eq(netherlands)
   end
 
   it 'iso_code should return 528 if given netherlands' do

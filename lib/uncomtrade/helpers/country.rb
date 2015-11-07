@@ -7,7 +7,7 @@ module Uncomtrade
     class Country
 
       def self.iso_code(nation)
-        if nation == "0" || nation == 0
+        if nation == 0
           0 # countries gem has no number called 0, it is comtrade api number.
         elsif nation == "all"
           "all"
@@ -21,7 +21,7 @@ module Uncomtrade
       private
 
       def self.find_country(nation)
-        if nation.is_a?(Integer) || nation.to_i > 0 # "hello".to_i returns 0
+        if nation.is_a?(Integer)
           ISO3166::Country.find_country_by_number(nation)
         else
           ISO3166::Country.find_country_by_name(nation)   || 
