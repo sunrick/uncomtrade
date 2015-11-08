@@ -7,40 +7,40 @@ RSpec.describe Uncomtrade::Helpers::Iterator do
     JSON.parse(file)['dataset']
   end
 
-  it 'giving an array with strings to cherry_pick should return the correct data' do
+  it 'giving a hash with strings to cherry_pick should return the correct data' do
     iterator = Uncomtrade::Helpers::Iterator.new(data)
-    array = iterator.cherry_pick(["period"])
-    expect(array).to eq([{"period" => 2014}, {"period" => 2014}])
-    array = iterator.cherry_pick(["period", "rtTitle"])
-    expect(array).to eq([{"period" => 2014, "rtTitle" => "Albania" }, 
-                         {"period" => 2014, "rtTitle" => "Albania"}])
+    array = iterator.cherry_pick("period" => "year")
+    expect(array).to eq([{"year" => 2014}, {"year" => 2014}])
+    array = iterator.cherry_pick("period" => "Year", "rtTitle" => "Reporter")
+    expect(array).to eq([{"Year" => 2014, "Reporter" => "Albania" }, 
+                         {"Year" => 2014, "Reporter" => "Albania" }])
   end
 
-  it 'giving an array with symbols to cherry_pick should return the correct data' do
+  it 'giving a hash with symbols to cherry_pick should return the correct data' do
     iterator = Uncomtrade::Helpers::Iterator.new(data)
-    array = iterator.cherry_pick([:period])
+    array = iterator.cherry_pick(period: "period")
     expect(array).to eq([{"period" => 2014}, {"period" => 2014}])
-    array = iterator.cherry_pick([:period, :rtTitle])
-    expect(array).to eq([{"period" => 2014, "rtTitle" => "Albania" }, 
-                         {"period" => 2014, "rtTitle" => "Albania"}])
+    array = iterator.cherry_pick(period: :year, rtTitle: :reporter)
+    expect(array).to eq([{ year: 2014, reporter: "Albania" }, 
+                         { year: 2014, reporter: "Albania" }])
   end
 
-  it 'passing an empty array should return the original array' do
+  it 'passing an empty hash should return the original array' do
     iterator = Uncomtrade::Helpers::Iterator.new(data)
-    array = iterator.cherry_pick([])
+    array = iterator.cherry_pick({})
     expect(array).to eq(data)
   end
 
   it 'should write a csv file and with no selectors and data should match' do
     iterator = Uncomtrade::Helpers::Iterator.new(data)
-    iterator.to_csv('data.csv', [])
+    iterator.to_csv('data.csv', {})
     file = csv_crap
     expect(file).to eq(data)
   end
 
   it 'should write a csv file and with selectors and data should match' do
     iterator = Uncomtrade::Helpers::Iterator.new(data)
-    selectors = [:period]
+    selectors = { period: "dog" }
     iterator.to_csv('data.csv', selectors)
     array = iterator.cherry_pick(selectors)
     file = csv_crap

@@ -17,12 +17,12 @@ module Uncomtrade
       response["dataset"]
     end
 
-    def cherry_pick(*selectors)
+    def cherry_pick(options={})
       iterator.cherry_pick(selectors)
     end
 
-    def to_csv(csv_path, *selectors)
-      iterator.to_csv(csv, selectors)
+    def to_csv(file:, selectors:)
+      iterator.to_csv(file, selectors)
     end
 
     private
