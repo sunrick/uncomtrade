@@ -64,7 +64,7 @@ When you create a request object you can specify what parameters you want to set
 
 #### Retrieving the data
 
-Call `.get_data` on the request object to return the data. See the [response object](###response-object) documentation on how to interact with data.
+Call `.get_data` on the request object to return the data. See the [response object](#response-object) documentation on how to interact with data.
 
 ```ruby
   request = Uncomtrade::Request.new(max: 200, freq: "M", p: "nl" )
