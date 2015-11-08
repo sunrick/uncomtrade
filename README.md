@@ -31,8 +31,8 @@ Or install it yourself as:
   response.dataset
   #=> [{"pfCode"=>"H4","yr"=>2014, ...}, ... ]
 
-  response.cherry_pick(:period, "TradeValue")
-  #=> [{"period"=>2014, "TradeValue"=>5229972238}, ...]
+  response.cherry_pick("period" => "period", "TradeValue" => "trade_amount")
+  #=> [{"period"=>2014, "trade_amount"=>5229972238}, ...]
 ```
 
 ## Detailed Usage
