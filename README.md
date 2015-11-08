@@ -62,6 +62,33 @@ When you create a request object you can specify what parameters you want to set
   #    :rg=>"all", :cc=>"TOTAL", :type=>"C"}
 ```
 
+#### Retrieving the data
+
+Call `.get_data` on the request object to return the data. See the [response object](###response-object) documentation on how to interact with data.
+
+```ruby
+  request = Uncomtrade::Request.new(max: 200, freq: "M", p: "nl" )
+  response = request.get_data
+```
+
+#### Error handling
+
+The [UN Comtrade API][comtrade] hands back a status for every request. Any status other than `"Ok"` is treated as an error by the API. If you want to rescue the error:
+
+```ruby
+  begin
+    request = Uncomtrade::Request.new(max: 200, freq: "M", p: "nl" )
+    response = request.get_data
+  rescue Uncomtrade::ResponseError => error
+    puts error.status
+    puts error.description
+    puts error.message
+  end
+```
+
+`error.message` will probably be the most helpful in debugging your query.
+
+
 #### Updating and resetting the request object
 
 You can update a single parameter or multiple parameters after you've created the request object. You can also reset all of the parameters to their default values by calling `.reset`.

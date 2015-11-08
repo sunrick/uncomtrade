@@ -7,4 +7,13 @@ module Uncomtrade
     end
   end
 
+  class ResponseError < StandardError
+    attr_reader :status, :description
+    def initialize(status, description, msg)
+      @status = status
+      @description = description
+      super(msg)
+    end
+  end
+
 end
