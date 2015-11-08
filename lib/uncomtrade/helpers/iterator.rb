@@ -1,3 +1,4 @@
+require 'pry'
 module Uncomtrade
   module Helpers
 
@@ -33,14 +34,14 @@ module Uncomtrade
       attr_reader :array
 
       def syms_to_strings(selectors)
-        selectors.map do |selector|
-          selector.to_s
-        end
+        selectors.map do |key, value|
+          [key.to_s, value]
+        end.to_h
       end
 
       def create_hash(data, selectors)
         selectors.inject({}) do |memo, selector|
-          memo.merge({selector => data[selector]})
+          memo.merge({selector.last => data[selector.first]})
         end
       end
 
