@@ -21,7 +21,7 @@ module Uncomtrade
       iterator.cherry_pick(selectors)
     end
 
-    def to_csv(file:, selectors:)
+    def to_csv(file:, selectors: {})
       iterator.to_csv(file, selectors)
     end
 
