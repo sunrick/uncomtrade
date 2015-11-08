@@ -12,7 +12,7 @@ module Uncomtrade
 
     def update(opts={})
       opts.each do |key, value|
-        self.options[key] = value
+        self.options[key] = value if key != :fmt # don't let user update :fmt
       end
     end
 
@@ -28,7 +28,7 @@ module Uncomtrade
 
     def set_options(options={})
       options[:max] ||= 500
-      options[:fmt] ||= 'json'
+      options[:fmt] = 'json' # only support json
       options[:r] = options[:r].nil? ? 'all': iso_code(options[:r])
       options[:freq] ||= 'A'
       options[:ps] ||= 'now'

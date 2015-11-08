@@ -48,4 +48,15 @@ RSpec.describe Uncomtrade::Options do
     expect(options.list_options).to eq(@options)
   end
 
+  it 'update method should not update :fmt key' do
+    options = Uncomtrade::Options.new
+    options.update(fmt: 'csv')
+    expect(options.list_options[:fmt]).to eq('json')
+  end
+
+  it 'creating a new options instance with :fmt specified should not overwrite default value' do
+    options = Uncomtrade::Options.new(fmt: 'csv')
+    expect(options.list_options[:fmt]).to eq('json')
+  end
+
 end
