@@ -14,10 +14,12 @@ module Uncomtrade
 
     def reset
       options.reset
+      self
     end
 
     def update(opts={})
       options.update(opts)
+      self
     end
 
     def params

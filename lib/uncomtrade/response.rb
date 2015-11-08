@@ -1,4 +1,5 @@
 require_relative 'helpers/iterator'
+require_relative 'errors'
 
 module Uncomtrade
 
@@ -6,6 +7,7 @@ module Uncomtrade
 
     def initialize(response)
       @response = JSON.parse(response.body)
+      check_status!
       @iterator = Helpers::Iterator.new(dataset)
     end
 
@@ -28,6 +30,13 @@ module Uncomtrade
     private
 
     attr_reader :response, :iterator
+
+    def check_status!
+      status = response["validation"]["status"]["name"]
+      description = response["validation"]["status"]["description"]
+      message = response["validation"]["message"]
+      raise ResponseError.new(status, description, message) if status != "Ok"
+    end
 
   end
 
