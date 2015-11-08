@@ -1,4 +1,4 @@
-require_relative '../errors.rb'
+require_relative '../errors'
 
 module Uncomtrade
 
