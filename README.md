@@ -128,7 +128,7 @@ To iterate over the dataset to only get the information you want, call `.cherry_
   response.cherry_pick(period: :year, TradeValue: :trade_amount)
   #=> [{:year=>2014, :trade_amount=>5229972238}, ...]
 
-  response.cherry_pick("period" => "period". "TradeValue" => "TradeValue")
+  response.cherry_pick("period" => "period", "TradeValue" => "TradeValue")
   #=> [{"period"=>2014, "TradeValue"=>5229972238}, ...]
 
 ```
