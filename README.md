@@ -1,5 +1,8 @@
 # Uncomtrade
 
+[![Gem Version](https://badge.fury.io/rb/uncomtrade.svg)](https://badge.fury.io/rb/uncomtrade)
+[![Build Status](https://travis-ci.org/sunrick/uncomtrade.svg?branch=master)](https://travis-ci.org/sunrick/uncomtrade)
+
 Simple gem for using the [UN Comtrade API][comtrade]. Their docs state the API can be changed at any moment, so use caution using this gem. I will try to keep it up-to-date as possible.
 
 Basic objectives of gem:
