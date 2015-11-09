@@ -38,8 +38,22 @@ RSpec.describe Uncomtrade::Options do
 
   it 'update method should not reset options' do
     options = Uncomtrade::Options.new(max: 200)
-    options.update(p: 44)
+    options.update(p: 528)
     expect(options.list_options[:max]).to eq(200)
+  end
+
+  it 'new method should use country helper correctly' do
+    options = Uncomtrade::Options.new(p: "netherlands", r: "nld")
+    expect(options.list_options[:p]).to eq(528)
+    expect(options.list_options[:r]).to eq(528)
+  end
+
+  it 'update method should use country helper correctly' do
+    options = Uncomtrade::Options.new
+    options.update(p: "nld")
+    expect(options.list_options[:p]).to eq(528)
+    options.update(r: "nl")
+    expect(options.list_options[:r]).to eq(528)
   end
 
   it 'reset method should reset options' do
