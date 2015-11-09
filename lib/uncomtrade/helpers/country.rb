@@ -12,9 +12,7 @@ module Uncomtrade
         elsif nation == "all"
           "all"
         else
-          country = find_country(nation)
-          raise CountryError, nation if country.nil?
-          country.number.to_i
+          find_country(nation)
         end
       end
 
@@ -22,11 +20,13 @@ module Uncomtrade
 
       def self.find_country(nation)
         if nation.is_a?(Integer)
-          ISO3166::Country.find_country_by_number(nation)
+          nation
         else
-          ISO3166::Country.find_country_by_name(nation)   || 
-          ISO3166::Country.find_country_by_alpha3(nation) || 
-          ISO3166::Country.find_country_by_alpha2(nation)
+          country = ISO3166::Country.find_country_by_name(nation)   || 
+                    ISO3166::Country.find_country_by_alpha3(nation) || 
+                    ISO3166::Country.find_country_by_alpha2(nation)
+          raise CountryError, nation if country.nil?
+          country.number.to_i
         end
       end
 

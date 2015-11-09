@@ -33,7 +33,7 @@ module Uncomtrade
 
     def check_status!
       message = "Server error: #{response["Message"]}"
-      raise ResponseError.new(nil, nil, message) if message
+      raise ResponseError.new(nil, nil, message) if response["Message"]
       status = response["validation"]["status"]["name"]
       description = response["validation"]["status"]["description"]
       message = response["validation"]["message"]
