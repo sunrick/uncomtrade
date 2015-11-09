@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Uncomtrade::Options do
 
-  before(:each) do
-    @options = {
+  let(:def_options) do
+    {
       max: 500,
       fmt: 'json',
       r: 'all',
@@ -15,18 +15,17 @@ RSpec.describe Uncomtrade::Options do
       cc: 'TOTAL',
       type: 'C'
     }
-
   end
 
   it 'options should have default values' do
     options = Uncomtrade::Options.new
-    expect(options.list_options).to eq(@options)
+    expect(options.list_options).to eq(def_options)
   end
 
   it 'options should initialize correctly' do
     options = Uncomtrade::Options.new(p: 528)
-    @options[:p] = 528
-    expect(options.list_options).to eq(@options)
+    def_options[:p] = 528
+    expect(options.list_options).to eq(def_options)
   end
 
   it 'update method should update the right values' do
@@ -59,7 +58,7 @@ RSpec.describe Uncomtrade::Options do
   it 'reset method should reset options' do
     options = Uncomtrade::Options.new(max: 200)
     options.reset
-    expect(options.list_options).to eq(@options)
+    expect(options.list_options).to eq(def_options)
   end
 
   it 'update method should not update :fmt key' do
