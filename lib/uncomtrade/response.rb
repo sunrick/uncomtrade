@@ -32,6 +32,8 @@ module Uncomtrade
     attr_reader :response, :iterator
 
     def check_status!
+      message = "Server error: #{response["Message"]}"
+      raise ResponseError.new(nil, nil, message) if message
       status = response["validation"]["status"]["name"]
       description = response["validation"]["status"]["description"]
       message = response["validation"]["message"]
