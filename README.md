@@ -55,11 +55,10 @@ In order to make a request to the API you'll need to create a request object. Fo
 When you create a request object you can specify what parameters you want to set values for, ones that are not set will retain their default value.
 
 ```ruby
-  request = Uncomtrade::Request.new(max: 200, freq: "M", p: "nl" )
+  request = Uncomtrade::Request.new(max: 200, freq: "M", p: 528 )
   request.params
   #=> {:max=>200, :freq=>"M", :fmt=>"json", :r=>"all", :ps=>"now",
-  #    :px=>"HS", :p=>258, # see country finder helper
-  #    :rg=>"all", :cc=>"TOTAL", :type=>"C"}
+  #    :px=>"HS", :p=>528, :rg=>"all", :cc=>"TOTAL", :type=>"C"}
 ```
 
 #### Retrieving the data
@@ -67,7 +66,7 @@ When you create a request object you can specify what parameters you want to set
 Call `.get_data` on the request object to return the data. See the [response object](#response-object) documentation on how to interact with data.
 
 ```ruby
-  request = Uncomtrade::Request.new(max: 200, freq: "M", p: "nl" )
+  request = Uncomtrade::Request.new(max: 200, freq: "M", p: 528 )
   response = request.get_data
 ```
 
@@ -77,7 +76,7 @@ The [UN Comtrade API][comtrade] hands back a status for every request. Any statu
 
 ```ruby
   begin
-    request = Uncomtrade::Request.new(max: 200, freq: "M", p: "nl" )
+    request = Uncomtrade::Request.new(max: 200, freq: "M", p: 528 )
     response = request.get_data
   rescue Uncomtrade::ResponseError => error
     puts error.status
@@ -101,6 +100,8 @@ You can update a single parameter or multiple parameters after you've created th
 ```
 
 #### Country finder helper
+
+WARNING: TO BE SAFE, use the numbers listed in their docs. The API uses the wrong ISO number for France, 251, it should be 250. Not sure how many other errors there are. Also, API includes former countries like USSR, regions and some city states that do no not exist in the countries gem. Will work on a better solution.
 
 The [UN Comtrade API][comtrade] uses ISO numbers for identifying countries/regions. This gem uses the [countries gem][countries] to help you use two/three letter country codes, as well as country names to find the number for you. For a list of available countries/regions check the [UN Comtrade API][comtrade] docs. You can also just use the ISO number.
 
