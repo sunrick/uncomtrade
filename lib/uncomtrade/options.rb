@@ -12,7 +12,11 @@ module Uncomtrade
 
     def update(opts={})
       opts.each do |key, value|
-        self.options[key] = value if key != :fmt # don't let user update :fmt
+        if [:p,:r].include?(key)
+          self.options[key] = iso_code(value)
+        else
+          self.options[key] = value if key != :fmt # don't let user update :fmt
+        end
       end
     end
 
