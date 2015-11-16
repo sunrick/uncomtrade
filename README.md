@@ -42,7 +42,7 @@ Or install it yourself as:
 
 ### Request object
 
-CAUTION: Currently the API only supports the `type` parameter to equal `C`. In this gem you cannot change the `pmt` parameter from `json`.
+CAUTION: Currently the API only supports the `type` parameter to equal `C`. In this gem you cannot change the `fmt` parameter from `json`.
 
 #### Creating the object
 
